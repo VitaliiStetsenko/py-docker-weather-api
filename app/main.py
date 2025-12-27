@@ -2,8 +2,7 @@ import os
 import sys
 import requests
 
-
-BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
+BASE_URL = "https://api.weatherapi.com/v1/current.json"
 
 
 def get_weather() -> None:
@@ -15,9 +14,8 @@ def get_weather() -> None:
     city = os.getenv("CITY", "Paris")
 
     params = {
+        "key": api_key,
         "q": city,
-        "appid": api_key,
-        "units": "metric",
     }
 
     response = requests.get(BASE_URL, params=params)
@@ -28,9 +26,9 @@ def get_weather() -> None:
 
     data = response.json()
 
-    print(f"City: {data['name']}")
-    print(f"Temperature: {data['main']['temp']}°C")
-    print(f"Weather: {data['weather'][0]['description']}")
+    print(f"City: {data["location"]["name"]}")
+    print(f"Temperature: {data["current"]["temp_c"]}°C")
+    print(f"Weather: {data["current"]["condition"]["text"]}")
 
 
 if __name__ == "__main__":
