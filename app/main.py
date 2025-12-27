@@ -26,9 +26,17 @@ def get_weather() -> None:
 
     data = response.json()
 
-    print(f"City: {data["location"]["name"]}")
-    print(f"Temperature: {data["current"]["temp_c"]}°C")
-    print(f"Weather: {data["current"]["condition"]["text"]}")
+    location = data["location"]
+    current = data["current"]
+    condition = current["condition"]
+
+    city_name = location["name"]
+    temp = current["temp_c"]
+    weather = condition["text"]
+
+    print(f"City: {city_name}")
+    print(f"Temperature: {temp}°C")
+    print(f"Weather: {weather}")
 
 
 if __name__ == "__main__":
