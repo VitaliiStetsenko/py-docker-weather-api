@@ -5,6 +5,7 @@ import requests
 
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
+
 def get_weather() -> None:
     api_key = os.getenv("API_KEY")
     if not api_key:
